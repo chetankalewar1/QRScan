@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<style>
+    .hidden{
+        display: none;
+    }
+</style>
+<body>
+{#<div></div>#}
+<div >
+    <form action="" method="post">{% csrf_token %}
+        <input class="hidden" type="text" id="UserAgent" name="user-agent">
+        <input class="hidden" type="text" id="ip" name="ip">
+        <input class="hidden" type="text" id="city" name="city">
+        <input class="hidden" type="text" id="region" name="region">
+        <input class="hidden" type="text" id="region" name="country">
+        <input class="hidden" type="text" id="timezone" name="timezone">
+        <input class="hidden" type="text" id="country" name="country">
+        <input class="hidden" type="text" id="os" name="os">
+        <button type="submit">Accept</button>
+    </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    {#User agent#}
+    $('#UserAgent').val(navigator.userAgent);
+    {#IP#}
+
+    $.get("http://ipinfo.io", function(response) {
+        $("#city").val(response.city);
+        $("#region").val(response.region);
+        $("#timezone").val(response.timezone);
+        $("#ip").val(response.ip);
+        $("#country").val(response.country);
+        $("#os").val(navigator.platform);
+}, "jsonp");
+</script>
+</body>
+</html>
